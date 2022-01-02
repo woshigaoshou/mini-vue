@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="./render.js"></script>
+  <script src="./reactive.js"></script>
+  <script src="index.js"></script>
+  <script>
+    // const vNode = h("div", { class: 'gz' }, [
+    //   h('h2', null, '当前计数为：100'),
+    //   h('button', { onClick: function() {} }, '+1')
+    // ])
+    // console.log(vNode);
+    // mount(vNode, document.querySelector('#app'));
+    // const newVNode = h("div", { class: 'gzzz' }, [
+    //   h('h2', null, '当前计数为：101'),
+    //   h('button', { onClick: function() {} }, '-1')
+    // ])
+    // setTimeout(() => {
+    //   patch(vNode, newVNode);
+    // }, 2000);
+    const app = createApp({
+      data: reactive({
+        counter: 0
+      }),
+      render() {
+        return h("div", { class: 'gz' }, [
+          h('h2', null, `当前计数为：${this.data.counter}`),
+          h('button', { onClick: () => this.data.counter++ }, '+1')
+        ])
+      }
+    });
+    app.mount('#app');
+  </script>
+</body>
+</html>
